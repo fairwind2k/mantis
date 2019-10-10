@@ -1,0 +1,9 @@
+{
+  "web": {
+    "baseUrl": "http://mantis:8080/"
+  },
+  "webadmin": {
+    "username": "administrator",
+    "password": "root"
+  }
+}
