@@ -40,12 +40,17 @@ class ProjectHelper:
     def get_project_list(self):
         wd = self.app.wd
         self.open_projects_page()
-        list = []
-        for element in wd.find_element_by_xpath("//table[3]").find_elements_by_css_selector("a"):
-            text = element.get_attribute("href")
-            text2 = element.text
-            list.append(Project(name=text2))
-        return list[5:]
+        projects_list = []
+        # for element in wd.find_element_by_xpath("//table[3]").find_elements_by_css_selector("a"):
+        #     text = element.get_attribute("href")
+        #     text2 = element.text
+        #     list.append(Project(name=text2))
+        # return list[5:]
+        for element in wd.find_elements_by_xpath("//a[contains(@href, 'manage_proj_edit_page.php?project')]"):
+            id = element.get_attribute('href').split("id=", 1)[1]
+            name = element.text
+            projects_list.append(Project(id=id, name=name))
+        return list(projects_list)
 
     def delete_project_by_name(self, project_name):
         wd = self.app.wd

@@ -12,3 +12,5 @@ def test_delete_project(app):
     app.project.delete_project_by_name(project.name)
     new_groups = app.project.get_project_list()
     assert len(old_projects) - 1 == len(new_groups)
+    old_projects.remove(project)
+    assert sorted(new_groups, key=Project.id_or_max) == sorted(old_projects, key=Project.id_or_max)
